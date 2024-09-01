@@ -29,27 +29,24 @@ const OrderForm = ({ cartProducts, total, user }) => {
         name: nameRef.current.value,
         email: emailRef.current.value,
         phone: phoneRef.current.value,
-        address: addressRef.current.value
+        address: addressRef.current.value,
       };
       const cart = cartProducts.map(({ product, quantity }) => ({
         product,
-        quantity
+        quantity,
       }));
 
-      const res = await fetch(
-        "https://ecommerce-node-app-sfau.onrender.com/client/order",
-        {
-          method: "POST",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            user: curUser,
-            items: cart,
-            formData: formData,
-            total: total
-          })
-        }
-      );
+      const res = await fetch("http://localhost:5000/client/order", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user: curUser,
+          items: cart,
+          formData: formData,
+          total: total,
+        }),
+      });
 
       if (res.status === 401) {
         window.alert("Your session has expired, please log in again");

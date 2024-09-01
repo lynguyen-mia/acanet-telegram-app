@@ -73,12 +73,9 @@ export default OrderDetail;
 export async function loader({ request, params }) {
   const orderId = params.orderId;
 
-  const res = await fetch(
-    `https://ecommerce-node-app-sfau.onrender.com/client/order?id=${orderId}`,
-    {
-      credentials: "include"
-    }
-  );
+  const res = await fetch(`http://localhost:5000/client/order?id=${orderId}`, {
+    credentials: "include",
+  });
 
   if (res.status === 401) {
     window.alert("Your session has expired, please log in again");

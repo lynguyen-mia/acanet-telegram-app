@@ -21,12 +21,9 @@ export default RootLayout;
 // loader function
 export async function loader() {
   // Fetch products
-  const res = await fetch(
-    "https://ecommerce-node-app-sfau.onrender.com/client/fetch-products",
-    {
-      credentials: "include"
-    }
-  );
+  const res = await fetch("http://localhost:5000/client/fetch-products", {
+    credentials: "include",
+  });
 
   if (res.status === 500) {
     return json({ message: "Couldn't fetch products." }, { status: 500 });

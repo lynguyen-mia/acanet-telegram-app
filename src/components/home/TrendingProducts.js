@@ -10,15 +10,12 @@ const TrendingProducts = () => {
   const TrendingProducts = useRouteLoaderData("root").slice(0, 8); // get only 8 results
 
   async function onClickProduct(prodId) {
-    const res = await fetch(
-      "https://ecommerce-node-app-sfau.onrender.com/client/fetch-product",
-      {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prodId: prodId })
-      }
-    );
+    const res = await fetch("http://localhost:5000/client/fetch-product", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prodId: prodId }),
+    });
 
     const resFile = await res.json();
     if (res.status === 500) {

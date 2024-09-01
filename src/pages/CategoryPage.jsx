@@ -21,9 +21,9 @@ const CategoryPage = () => {
     async function fetchProducts() {
       try {
         const res = await fetch(
-          `https://ecommerce-node-app-sfau.onrender.com/client/fetch-category?category=${category}&&page=${curPage}&&pageItem=${pageItem}&&sort=${sort}`,
+          `http://localhost:5000/client/fetch-category?category=${category}&&page=${curPage}&&pageItem=${pageItem}&&sort=${sort}`,
           {
-            credentials: "include"
+            credentials: "include",
           }
         );
 

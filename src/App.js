@@ -11,6 +11,7 @@ import OrderDetail, { loader as orderDetailLoader } from "./pages/OrderDetail";
 import ErrorPage from "./pages/ErrorPage";
 import SigninForm from "./auth/SigninForm";
 import SignupForm from "./auth/SignupForm";
+import Tele from "./pages/Tele";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />
+        element: <HomePage />,
       },
       { path: "shop", element: <CategoryPage /> },
       { path: "/detail/:productId", element: <DetailPage /> },
@@ -34,10 +35,14 @@ const router = createBrowserRouter([
       {
         path: "/history/order/:orderId",
         element: <OrderDetail />,
-        loader: orderDetailLoader
-      }
-    ]
-  }
+        loader: orderDetailLoader,
+      },
+    ],
+  },
+  {
+    path: "/telegram",
+    element: <Tele />,
+  },
 ]);
 
 function App() {

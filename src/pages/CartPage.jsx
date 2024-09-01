@@ -10,12 +10,9 @@ const CartPage = () => {
   useEffect(() => {
     try {
       async function getCart() {
-        const res = await fetch(
-          "https://ecommerce-node-app-sfau.onrender.com/client/cart",
-          {
-            credentials: "include",
-          }
-        );
+        const res = await fetch("http://localhost:5000/client/cart", {
+          credentials: "include",
+        });
 
         if (res.status === 401) {
           window.alert("Your session has expired, please log in again");
@@ -23,8 +20,6 @@ const CartPage = () => {
         }
 
         const results = await res.json();
-        // const filterResults = await results.data.filter((p) => p.product);
-        console.log(results.data);
         setCartProducts(results.data);
       }
       getCart();

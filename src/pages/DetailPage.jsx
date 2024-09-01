@@ -12,12 +12,9 @@ const DetailPage = () => {
 
   useEffect(() => {
     async function fetchProduct(id) {
-      const res = await fetch(
-        `https://ecommerce-node-app-sfau.onrender.com/client/detail/${id}`,
-        {
-          credentials: "include"
-        }
-      );
+      const res = await fetch(`http://localhost:5000/client/detail/${id}`, {
+        credentials: "include",
+      });
 
       const resFile = await res.json();
       if (res.status === 500) {

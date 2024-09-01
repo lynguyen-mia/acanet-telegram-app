@@ -74,12 +74,9 @@ const History = () => {
 export default History;
 
 export async function loader() {
-  const res = await fetch(
-    "https://ecommerce-node-app-sfau.onrender.com/client/transactions",
-    {
-      credentials: "include"
-    }
-  );
+  const res = await fetch("http://localhost:5000/client/transactions", {
+    credentials: "include",
+  });
 
   if (res.status === 401) {
     window.alert("Your session has expired, please log in again");

@@ -36,15 +36,12 @@ const SigninForm = (props) => {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
 
-      const res = await fetch(
-        "https://ecommerce-node-app-sfau.onrender.com/client/login",
-        {
-          method: "POST",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email, password: password })
-        }
-      );
+      const res = await fetch("http://localhost:5000/client/login", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email, password: password }),
+      });
 
       const data = await res.json();
       if (res.status === 500 || res.status === 401) {

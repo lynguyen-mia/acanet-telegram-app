@@ -13,7 +13,7 @@ const CartProducts = ({ listcart, setCartProducts }) => {
       const confirm = window.confirm("Are you sure to delete this product?");
       if (confirm) {
         const res = await fetch(
-          `https://ecommerce-node-app-sfau.onrender.com/client/cart-remove?id=${id}`,
+          `http://localhost:5000/client/cart-remove?id=${id}`,
           {
             credentials: "include",
           }
@@ -38,7 +38,6 @@ const CartProducts = ({ listcart, setCartProducts }) => {
     }
   }
 
-  // Redirect to other pages
   const navigate = useNavigate();
   function onClickShopping() {
     navigate("/shop");
@@ -79,7 +78,6 @@ const CartProducts = ({ listcart, setCartProducts }) => {
             <tbody>
               {/* For each product, create a row */}
               {listcart.map((p) => {
-                console.log(listcart);
                 const total = Number(p.quantity) * Number(p.product?.price);
                 return (
                   <tr key={p.product?._id} className="row">

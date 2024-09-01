@@ -32,15 +32,12 @@ const SignupForm = () => {
     const password = passwordRef.current.value;
     const phone = phoneRef.current.value;
 
-    const res = await fetch(
-      "https://ecommerce-node-app-sfau.onrender.com/client/register",
-      {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, name, password, phone })
-      }
-    );
+    const res = await fetch("http://localhost:5000/client/register", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, name, password, phone }),
+    });
 
     const data = await res.json();
     if (res.status === 500 || res.status === 401) {

@@ -19,25 +19,26 @@ const ChangeQuantityBtn = ({ quantity, product, changeCartProducts }) => {
   const [orderAlert, dispatchAlert] = useReducer(alertReducer, []);
 
   async function updateQuantity(prodId, quantity) {
-    const res = await fetch(
-      "https://ecommerce-node-app-sfau.onrender.com/client/edit-cart",
-      {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prodId: prodId, quantity: quantity }),
-      }
-    );
+    const res = await fetch("http://localhost:5000/client/edit-cart", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prodId: prodId, quantity: quantity }),
+    });
 
     if (res.status === 401) {
       window.alert("Your session has expired, please log in again");
       return window.location.replace("/login");
     }
 
-    if (res.ok) {
-      const result = await res.json();
-      changeCartProducts(result.data);
+    const result = await res.json();
+
+    if (res.status === 404) {
+      setQuantityNum((prev) => Number(result.stock));
+      window.alert(`The maximum quantity in stock now is ${result.stock}`);
     }
+
+    changeCartProducts(result.data);
   }
 
   const dispatchAlertFn = () => {

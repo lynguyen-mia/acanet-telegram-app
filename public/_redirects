@@ -1,2 +1,2 @@
-/public/images/* https://ecommerce-node-app-sfau.onrender.com/public/images/:splat 200 
+/public/images/* http://localhost:5000/public/images/:splat 200 
 /* /index.html 200 
